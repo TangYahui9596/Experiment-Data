@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<config>
+	<!-- Target server to steam log events to -->
+	<logserver>
+		<host>localhost</host>
+		<port>9001</port>
+	</logserver>
+
+	<!-- Application node identification -->
+	<nodeid>
+		<application>Bookstore</application>
+		<tier>Main</tier>
+		<node>Node A</node>
+	</nodeid>
+
+    <!-- ClassLoader modifiers configuration -->
+    <classloader-modifiers />
+
+	<!-- Code transformation rules configuration -->
+	<transformation-rules>
+
+		<!-- Log method calls -->
+		<rule-pointcut>
+			<enabled>true</enabled>
+			<includes>
+				<include>BookstoreExample.*</include>
+			</includes>
+			<pointcuts>
+				<pointcut>
+					<method-pattern>BookstoreExample.BookstoreStarter.main(*</method-pattern>
+				</pointcut>
+				<pointcut>
+                    <trace-calls>true</trace-calls>
+					<method-pattern>BookstoreExample.*</method-pattern>
+                    <call-pattern>BookstoreExample.*</call-pattern>
+				</pointcut>
+			</pointcuts>
+		</rule-pointcut>
+		
+	</transformation-rules>
+</config>
